@@ -1,4 +1,7 @@
 const corLib = {
+    /*
+      * 获取当前时间 0为日期时间 1为日期 2为时间
+      **/
     getDate(type) {
         var time;
         switch (type) {
@@ -37,6 +40,9 @@ const corLib = {
         }
         return format;
     },
+     /*
+      * 获取两天日期的天数差
+      **/
     getDayNum(strDateStart, strDateEnd) {
         var strSeparator = "-"; //日期分隔符
         var oDate1;
