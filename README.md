@@ -1,2 +1,10 @@
 # corLib
-封装一些常用基础的功能
+## 封装一些常用基础的功能
+## lib/base.css
+### 页面开发基础样式库
+## lib/corApi.js
+### 与原生相关初始化功能
+## lib/flex.css
+### 页面布局样式
+## lib/rem.js
+### 页面字体适配方案rem 

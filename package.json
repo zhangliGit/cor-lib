@@ -1,0 +1,22 @@
+{
+  "name": "corlib",
+  "version": "1.0.1",
+  "description": "javascript baseLib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangliGit/corLib.git"
+  },
+  "keywords": [
+    "baseLib"
+  ],
+  "author": "zhangli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhangliGit/corLib/issues"
+  },
+  "homepage": "https://github.com/zhangliGit/corLib#readme"
+}
