@@ -1,6 +1,31 @@
 const isPhone = !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 const isAndroid = (window.navigator.userAgent.indexOf('Android') >= 0) ? true : false
 
+/**
+ * 数组新增方法
+ * hasValue 是否包括某个元素
+ * indexOf 元素在数组中的索引
+ * remove 删除数组某个元素
+ */
+Array.prototype.has = (val) => {
+  for (value of this) {
+    if (value === val) return true
+  }
+  return false
+}
+Array.prototype.indexOf = (val) => {
+  for (let i =0; i < this.length; i++) {
+    if (this[i] == val) return i
+  }
+  return -1
+}
+Array.prototype.remove = (val) => {
+  let index = this.indexOf(val)
+  if (index > -1) {
+    this.splice(index, 1)
+  }
+}
+
 const corLib = {
   /*
    * android 和 ios传参校验
@@ -150,7 +175,7 @@ const corLib = {
    * 是否为对象
    **/
   isObject(obj) {
-    if (typeof (obj) == 'object' && !Array.isArray(obj)) {
+    if (typeof(obj) == 'object' && !Array.isArray(obj)) {
       return true
     } else {
       return false
@@ -171,7 +196,10 @@ const corLib = {
    **/
   replaceAllText (str, text, val='') {
     return str.replace(new RegExp(text,'g'), val)
-  }
+  },
+  /*
+   * 
+   **/
 }
 
 const corPlugin = {
@@ -202,7 +230,7 @@ const corPlugin = {
    * isCheckBox 是否多选
    * initialUsers 是否有默认值
    */
-  chooseUser(isCheckBox = true, initialUsers = [], cb) {
+  choiceUser(isCheckBox = true, initialUsers = [], cb) {
     let backMethod = 'backMethod_' + new Date().getTime()
     window[backMethod] = function (result) {
       if (result.status == true) {
@@ -223,7 +251,7 @@ const corPlugin = {
    * imgUrl 本地路径
    * file 服务器接收标识
    */
-  uploadFile (url, imgUrl, file, cb) {
+  upload (url, imgUrl, file, cb) {
     let backMethod = 'backMethod_' + new Date().getTime()
     window[backMethod] = function (result) {
       if(result.data.progress==100){
@@ -278,7 +306,7 @@ const corPlugin = {
    * fileUrl 附件地址
    */
   openFile (fileUrl) {
-    var type = fileUrl.split('.')[1].toLowerCase(),
+    let type = fileUrl.split('.')[1].toLowerCase(),
       fileType
     if (type == 'doc' || type == 'ppt' || type == 'pptx' || type == 'xls' ||
       type == 'pdf' || type == 'xlsx' || type == 'xlt' || type == 'docx' || type == 'txt') {
@@ -286,14 +314,34 @@ const corPlugin = {
     } else if (type == 'png' || type == 'jpg' || type == 'jpeg') {
       fileType = 'IMAGE'
     }
-    var params = {
+    let params = {
       path: fileUrl,
       suffix: type,
       type: fileType
     }
     params = corLib.checkParams(params)
     corNative.openFile(params)
+  },
+  /** 
+   * 选择本地文件
+   * fileUrl 附件地址
+   */
+  choiceFile (cb) {
+    let backMethod = 'backMethod_'+new Date().getTime()
+    window[backMethod] = function(result){
+        if (result.status == true) {
+          cb(result.data)
+        }
+    }
+    let params = {
+        __callback:backMethod
+    }
+    params = corLib.checkParams(params)
+    corNative.choiceFile(params)
   }
 }
-module.exports.corLib = corLib
-module.exports.corPlugin = corPlugin
+
+export {
+  corLib,
+  corPlugin
+}
