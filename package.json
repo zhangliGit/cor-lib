@@ -1,6 +1,6 @@
 {
   "name": "corlib",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "javascript baseLib",
   "main": "index.js",
   "scripts": {
