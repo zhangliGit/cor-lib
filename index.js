@@ -1,6 +1,5 @@
 const isPhone = !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 const isAndroid = (window.navigator.userAgent.indexOf('Android') >= 0) ? true : false
-
 /**
  * 数组新增方法
  * hasValue 是否包括某个元素
@@ -14,7 +13,7 @@ Array.prototype.has = (val) => {
   return false
 }
 Array.prototype.indexOf = (val) => {
-  for (let i =0; i < this.length; i++) {
+  for (let i = 0; i < this.length; i++) {
     if (this[i] == val) return i
   }
   return -1
@@ -27,6 +26,18 @@ Array.prototype.remove = (val) => {
 }
 
 const corLib = {
+  /**
+   * 判断iphone
+   */
+  isPhone() {
+    return isPhone
+  },
+  /**
+   * 判断android
+   */
+  isAndroid() {
+    return isAndroid
+  },
   /*
    * android 和 ios传参校验
    * */
@@ -175,7 +186,7 @@ const corLib = {
    * 是否为对象
    **/
   isObject(obj) {
-    if (typeof(obj) == 'object' && !Array.isArray(obj)) {
+    if (typeof (obj) == 'object' && !Array.isArray(obj)) {
       return true
     } else {
       return false
@@ -185,21 +196,59 @@ const corLib = {
    * 数组中对象属性值升序排列
    **/
   sortByObj(key) {
-    function sortBy(field) {
-      return function (a, b) {
-        return a[field] - b[field]
-      }
+    return function (a, b) {
+      return a[key] - b[key]
     }
   },
   /*
    * 替换文本中所有的字符串 变量替换
    **/
-  replaceAllText (str, text, val='') {
-    return str.replace(new RegExp(text,'g'), val)
+  replaceAllText(str, text, val = '') {
+    return str.replace(new RegExp(text, 'g'), val)
   },
   /*
-   * 
+   * 本地存储值
    **/
+  setLocVal(key, val) {
+    if (window.localStorage) {
+      return window.localStorage.setItem(key, val);
+    } else {
+      console.log("浏览器不支持localStorage");
+    }
+  },
+  //本地取值
+  getLocVal(key){
+    return window.localStorage.getItem(key);
+  },
+  //清除本地值
+  removeLocVal(key){
+    if (window.localStorage) {
+      window.localStorage.removeItem(key);
+    } else {
+      console.log("浏览器不支持localStorage");
+    }
+  },
+  //清除所有存储值
+  getLocValKey(){
+    if (window.localStorage) {
+      var locArry = [];
+      console.log(localStorage.length);
+      for (var i = 0; i < window.localStorage.length; i++) {
+        locArry.push(window.localStorage.key(i));
+      }
+      return locArry;
+    } else {
+      console.log("浏览器不支持localStorage");
+    }
+  },
+  //清除所有存储值
+  clearLocVal(){
+    if (window.localStorage) {
+      window.localStorage.clear();
+    } else {
+      console.log("浏览器不支持localStorage");
+    }
+  }
 }
 
 const corPlugin = {
@@ -251,15 +300,13 @@ const corPlugin = {
    * imgUrl 本地路径
    * file 服务器接收标识
    */
-  upload (url, imgUrl, file, cb) {
+  upload(url, imgUrl, file, cb) {
     let backMethod = 'backMethod_' + new Date().getTime()
     window[backMethod] = function (result) {
-      if(result.data.progress==100){
+      if (result.data.progress == 100) {
         cb(result.data.file.url)
       }
-      if (result.data.reqCode == 2) {
-      } else if (reslut.data.reqCode == 0) {
-      }
+      if (result.data.reqCode == 2) {} else if (reslut.data.reqCode == 0) {}
     }
     let params = {
       url: url,
@@ -281,16 +328,14 @@ const corPlugin = {
    * url 服务器端地址
    * fileName 附件名称
    */
-  download (url,fileName, cb) {
+  download(url, fileName, cb) {
     let backMethod = 'backMethod_' + new Date().getTime()
     window[backMethod] = function (result) {
-      if(result.data.progress == 100 ){
+      if (result.data.progress == 100) {
         cb(result.data.savePath)
       }
       if (restult.status == true) {
-        if (result.data.reqCode == 0) {
-        } else if (result.data.reqCode == 2) {
-        }
+        if (result.data.reqCode == 0) {} else if (result.data.reqCode == 2) {}
       }
     }
     let params = {
@@ -305,7 +350,7 @@ const corPlugin = {
    * 查看附件
    * fileUrl 附件地址
    */
-  openFile (fileUrl) {
+  openFile(fileUrl) {
     let type = fileUrl.split('.')[1].toLowerCase(),
       fileType
     if (type == 'doc' || type == 'ppt' || type == 'pptx' || type == 'xls' ||
@@ -326,15 +371,15 @@ const corPlugin = {
    * 选择本地文件
    * fileUrl 附件地址
    */
-  choiceFile (cb) {
-    let backMethod = 'backMethod_'+new Date().getTime()
-    window[backMethod] = function(result){
-        if (result.status == true) {
-          cb(result.data)
-        }
+  choiceFile(cb) {
+    let backMethod = 'backMethod_' + new Date().getTime()
+    window[backMethod] = function (result) {
+      if (result.status == true) {
+        cb(result.data)
+      }
     }
     let params = {
-        __callback:backMethod
+      __callback: backMethod
     }
     params = corLib.checkParams(params)
     corNative.choiceFile(params)
