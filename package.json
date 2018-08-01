@@ -1,6 +1,6 @@
 {
   "name": "corlib",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "javascript baseLib",
   "main": "index.js",
   "scripts": {
@@ -8,15 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangliGit/corLib.git"
+    "url": "git+https://github.com/zhangliGit/cor-lib.git"
   },
   "keywords": [
-    "baseLib"
+    "cor-lib",
+    "js基础功能封装"
   ],
   "author": "zhangli",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhangliGit/corLib/issues"
+    "url": "https://github.com/zhangliGit/cor-lib/issues"
   },
-  "homepage": "https://github.com/zhangliGit/corLib#readme"
+  "homepage": "https://github.com/zhangliGit/cor-lib#readme"
 }

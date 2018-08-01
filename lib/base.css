@@ -888,11 +888,7 @@ only screen and (min-device-pixel-ratio: 2.0) {
 }
 .co-scroll{
     overflow: scroll;
-<<<<<<< HEAD
     -webkit-overflow-scrolling: touch
-=======
-    -webkit-overflow-scrolling: touch;
->>>>>>> b34c426966f91fc65b4fa1b80ec4330512fe21d8
 }
 /**元素阴影**/
 .co-bs-a{
