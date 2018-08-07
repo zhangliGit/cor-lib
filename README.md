@@ -1,6 +1,5 @@
-### cor-lib
+## cor-lib库
 
-> 大客户交付中心移动端开发常用CSS样式和JS功能库
 
 ### base.css
 
