@@ -1,7 +1,7 @@
 
-let corJs = require('./lib/cor-js')
-let corNative = require('./lib/cor-native')
-let corPlugin = require('./lib/cor-plugin')
+var corJs = require('./lib/cor-js')
+var corNative = require('./lib/cor-native')
+var corPlugin = require('./lib/cor-plugin')
 
 export {
   corJs,
