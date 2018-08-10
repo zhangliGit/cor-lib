@@ -1,6 +1,6 @@
 {
   "name": "corlib",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "javascript baseLib",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/zhangliGit/cor-lib/issues"
   },
-  "homepage": "https://github.com/zhangliGit/cor-lib#readme"
+  "homepage": "https://github.com/zhangliGit/cor-lib#readme",
+  "dependencies": {
+    "corlib": "^1.1.5"
+  }
 }
