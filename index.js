@@ -1,10 +1,5 @@
-
-import corJs from './lib/cor-js'
-import corNative from './lib/cor-native'
-import corPlugin from './lib/cor-plugin'
+import utils from './lib/utils'
 
 export {
-  corJs,
-  corNative,
-  corPlugin
+  utils
 }
