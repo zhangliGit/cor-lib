@@ -12,8 +12,8 @@
   },
   "keywords": [
     "cor-lib",
-    "js基础功能封装",
-    "门户原生能力"
+    "前端样式基础库",
+    "前端js功能库"
   ],
   "author": "zhangli",
   "license": "MIT",
@@ -21,6 +21,5 @@
     "url": "https://github.com/zhangliGit/cor-lib/issues"
   },
   "homepage": "https://github.com/zhangliGit/cor-lib#readme",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
