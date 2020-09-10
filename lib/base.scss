@@ -478,7 +478,7 @@ $media (-webkit-device-pixel-ratio: 4) {
 
 /* 元素隐藏 */
 .u-hide {
-  display: none;
+  display: none !important;
 }
 
 .u-of {
@@ -522,6 +522,19 @@ $media (-webkit-device-pixel-ratio: 4) {
 
 .u-line3 {
   line-height: $u-line3;
+}
+
+/** 文字间距 **/
+.u-letter-1 {
+  letter-spacing: 2px;
+}
+
+.u-letter-2 {
+  letter-spacing: 4px;
+}
+
+.u-letter-3 {
+  letter-spacing: 6px;
 }
 
 /**
